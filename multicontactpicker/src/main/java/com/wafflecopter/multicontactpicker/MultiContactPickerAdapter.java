@@ -3,7 +3,6 @@ package com.wafflecopter.multicontactpicker;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.TextAppearanceSpan;
@@ -15,6 +14,7 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.RecyclerView;
 import com.l4digital.fastscroll.FastScroller;
 import com.wafflecopter.multicontactpicker.RxContacts.Contact;
 import com.wafflecopter.multicontactpicker.Views.RoundLetterView;
