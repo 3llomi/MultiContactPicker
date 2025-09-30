@@ -2,8 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 group='com.github.xbroak'
 android {
-    compileSdkVersion 28
-    buildToolsVersion '28.0.2'
+    compileSdkVersion 36
 
     defaultConfig {
         minSdkVersion 21
@@ -19,10 +18,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     namespace 'com.wafflecopter.multicontactpicker'
+
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
 }
 
 dependencies {
@@ -39,7 +45,7 @@ afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-                from components.findByName('release')
+                from components.release
                 groupId = 'com.github.xbroak'
                 artifactId = 'multicontactpicker'
                 version = '1.8.6'
