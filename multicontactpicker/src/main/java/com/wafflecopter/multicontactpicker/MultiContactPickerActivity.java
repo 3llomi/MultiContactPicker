@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.drawable.DrawableCompat;
@@ -115,6 +116,19 @@ public class MultiContactPickerActivity extends AppCompatActivity implements Mat
                     tvSelectAll.setText(getString(R.string.tv_unselect_all_btn_text));
                 else
                     tvSelectAll.setText(getString(R.string.tv_select_all_btn_text));
+            }
+        });
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (searchView.isSearchOpen()) {
+                    searchView.closeSearch();
+                } else {
+                    setEnabled(false);
+                    getOnBackPressedDispatcher().onBackPressed();
+                    overrideAnimation();
+                }
             }
         });
 
@@ -291,16 +305,6 @@ public class MultiContactPickerActivity extends AppCompatActivity implements Mat
             adapter.filterOnText(newText);
         }
         return false;
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (searchView.isSearchOpen()) {
-            searchView.closeSearch();
-        } else {
-            super.onBackPressed();
-            overrideAnimation();
-        }
     }
 
     @Override
